@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Design Mockup — Chat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="design-mockup-root">
+  <nav class="navbar"><div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;width:100%;padding:0 16px;"><a href="index.html" class="logo" style="font-weight:700;color:var(--brand-1);text-decoration:none;">OpenAI Chat Box</a><div style="margin-left:auto"><a href="index.html">Back</a></div></div></nav>
+  <main class="main-container" style="flex-direction:column;align-items:center;padding-top:92px;">
+    <section class="design-hero">
+      <h1>Smart conversations, now beautiful</h1>
+      <p>Centered, clean UI with expressive accents and elegant typography — a blend of minimal, bold, and calm.</p>
+      <div class="mockup-action">
+        <button class="btn-cta">Start chat</button>
+        <button class="btn-secondary">Learn more</button>
+      </div>
+    </section>
+
+    <div class="center-stage">
+      <aside class="card" style="width:260px;">
+        <div style="font-weight:700;color:var(--brand-1);margin-bottom:8px">Quick tips</div>
+        <div class="small-note">• Press <kbd>Enter</kbd> to send • Use the mic for voice input</div>
+      </aside>
+
+      <section class="mock-chat card" aria-label="Chat mockup">
+        <div class="chat-header">
+          <h3>Assistant</h3>
+          <span class="backend-badge">gpt-40-mini</span>
+        </div>
+
+        <div class="chat-body">
+          <div class="message"><div class="bubble ai">Hi there — how can I help you today?</div><div class="meta">Assistant • 10:12</div></div>
+          <div class="message user"><div class="bubble user">Show me a clean UI mockup for the chat.</div><div class="meta">You • 10:12</div></div>
+          <div class="message"><div class="bubble ai">Here's a beautiful layout combining minimal spacing, vibrant accents, and serif headings.</div><div class="meta">Assistant • 10:12</div></div>
+        </div>
+
+        <form class="chat-input-area" onsubmit="event.preventDefault(); alert('Send pressed in mockup');">
+          <input id="user-input" type="text" placeholder="Type your message..." aria-label="Message input">
+          <button id="send-btn" type="submit">Send</button>
+        </form>
+      </section>
+    </div>
+
+    <p class="small-note">This is a mockup page for design review — no backend calls.</p>
+  </main>
+
+  <script>
+    // small JS: focus input on load
+    document.addEventListener('DOMContentLoaded', function(){ const i = document.getElementById('user-input'); if(i) i.focus(); });
+  </script>
+</body>
+</html>

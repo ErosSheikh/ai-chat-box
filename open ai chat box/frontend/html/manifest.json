@@ -1,0 +1,15 @@
+{
+  "name": "AI Chat Box",
+  "short_name": "ChatBox",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#e0eafc",
+  "theme_color": "#0078d4",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "32x32 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

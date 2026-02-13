@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About | Nutron Chat</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .about-container { 
+            max-width: 640px; 
+            margin: 60px auto; 
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(240,245,255,0.95) 100%); 
+            border-radius: 24px; 
+            box-shadow: 0 12px 48px rgba(99,102,241,0.15), 0 2px 8px rgba(0,0,0,0.04); 
+            padding: 48px 40px; 
+            text-align: center;
+            border: 1px solid rgba(99,102,241,0.1);
+            backdrop-filter: blur(8px);
+        }
+        .about-container h1 { 
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+        .about-container p { color: #475569; font-size: 1.05rem; margin-bottom: 12px; line-height: 1.6; }
+        .about-container a { 
+            color: #6366f1; 
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            border-bottom: 2px solid rgba(99,102,241,0.3);
+        }
+        .about-container a:hover { 
+            color: #8b5cf6;
+            border-bottom-color: #8b5cf6;
+        }
+        .about-features { 
+            margin: 32px 0 24px 0; 
+            text-align: left;
+            background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(139,92,246,0.05) 100%);
+            padding: 24px;
+            border-radius: 16px;
+            border-left: 4px solid #6366f1;
+        }
+        .about-features li { 
+            margin-bottom: 14px; 
+            font-size: 1.05rem; 
+            color: #334155;
+            line-height: 1.5;
+        }
+        .about-tech { 
+            margin: 24px 0 0 0; 
+            color: #475569; 
+            font-size: 1.02rem;
+            background: rgba(139,92,246,0.08);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(139,92,246,0.2);
+        }
+        .about-team { 
+            margin: 20px 0 0 0; 
+            color: #64748b; 
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+        /* Dark theme overrides */
+        body.dark-theme .about-container {
+            background: linear-gradient(135deg, rgba(18,24,45,0.98) 0%, rgba(15,20,40,0.95) 100%);
+            border-color: rgba(167,139,250,0.2);
+            box-shadow: 0 12px 48px rgba(167,139,250,0.1), 0 2px 8px rgba(0,0,0,0.4);
+        }
+        body.dark-theme .about-container p { color: #cbd5e1; }
+        body.dark-theme .about-container a { color: #a78bfa; border-bottom-color: rgba(167,139,250,0.5); }
+        body.dark-theme .about-container a:hover { color: #d8b4fe; }
+        body.dark-theme .about-features { background: linear-gradient(135deg, rgba(167,139,250,0.08) 0%, rgba(139,92,246,0.05) 100%); border-left-color: #a78bfa; }
+        body.dark-theme .about-features li { color: #cbd5e1; }
+        body.dark-theme .about-tech { background: rgba(167,139,250,0.08); color: #cbd5e1; border-color: rgba(167,139,250,0.2); }
+        body.dark-theme .about-team { color: #9fb6b0; }
+    </style>
+</head>
+<body>
+    <nav class="navbar"><div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;width:100%;padding:0 16px;"><a href="index.html" class="logo" style="font-weight:700;color:var(--brand-1);text-decoration:none;">Nutron Chat</a><div style="margin-left:auto;display:flex;gap:10px;align-items:center;"><button id="theme-toggle" class="icon-btn" title="Toggle dark theme" aria-pressed="false" aria-label="Toggle theme">🌙</button></div></div></nav>
+    <div style="height: 48px;"></div>
+    <div class="about-container">
+        <h1>About Nutron Chat</h1>
+        <p><b>Nutron</b> is a modern, multi-backend AI chat platform designed for learning, experimentation, and inspiration.</p>
+        <ul class="about-features">
+            <li>🌐 <b>Multi-backend:</b> Switch between Python (Flask) and PHP for AI responses.</li>
+            <li>💬 <b>Modern UI:</b> Responsive, beautiful chat interface inspired by leading AI chat apps.</li>
+            <li>⚡ <b>Fast & Interactive:</b> Real-time chat, typing indicator, and persistent chat history.</li>
+            <li>🔒 <b>Privacy-first:</b> All chat data is stored locally in your browser.</li>
+            <li>🛠️ <b>Open & Extensible:</b> Easily add new backends or features for your own projects.</li>
+        </ul>
+        <div class="about-tech">
+            <b>Tech Stack:</b> HTML, CSS, JavaScript, Python (Flask), PHP
+        </div>
+        <div class="about-team">
+            Created by the Nutron Team with ❤️ for the open source and learning community.<br>
+            <a href="contact.html">Contact us</a> • <a href="report-issue.html">Report Issue</a> for feedback, collaboration, or support.
+        </div>
+        <p style="margin-top:18px;"><a href="index.html">Back to Chat</a></p>
+    </div>
+    <script src="../javascript/script.js"></script>
+</body>
+</html>

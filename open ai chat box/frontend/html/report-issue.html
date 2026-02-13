@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report Issue | Nutron Chat</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .report-container { 
+            max-width: 640px; 
+            margin: 60px auto; 
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(240,245,255,0.95) 100%); 
+            border-radius: 24px; 
+            box-shadow: 0 12px 48px rgba(239,68,68,0.12), 0 2px 8px rgba(0,0,0,0.04); 
+            padding: 48px 40px; 
+            text-align: center;
+            border: 1px solid rgba(239,68,68,0.1);
+            backdrop-filter: blur(8px);
+        }
+        
+        .report-container h1 { 
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+        
+        .report-container .subtitle {
+            color: #475569;
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        
+        .issue-types {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 24px 0;
+        }
+        
+        .issue-types label {
+            display: flex;
+            align-items: center;
+            padding: 14px;
+            background: rgba(239,68,68,0.05);
+            border: 1.5px solid #fecaca;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            color: #475569;
+        }
+        
+        .issue-types label:hover {
+            background: rgba(239,68,68,0.12);
+            border-color: #ef4444;
+        }
+        
+        .issue-types input[type="radio"] {
+            cursor: pointer;
+            margin-right: 8px;
+            accent-color: #ef4444;
+        }
+        
+        .report-container input, 
+        .report-container textarea, 
+        .report-container select {
+            width: 100%; 
+            margin: 12px 0; 
+            padding: 12px 16px; 
+            border-radius: 10px; 
+            border: 1.5px solid #e2e8f0;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: rgba(255,255,255,0.95);
+        }
+        
+        .report-container input:focus, 
+        .report-container textarea:focus, 
+        .report-container select:focus {
+            outline: none;
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+        }
+        
+        .report-container button { 
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); 
+            color: #fff; 
+            border: none; 
+            border-radius: 10px; 
+            padding: 12px 32px; 
+            font-size: 1.02rem; 
+            cursor: pointer; 
+            margin-top: 16px;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(239,68,68,0.25);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .report-container button:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(239,68,68,0.35);
+        }
+        
+        .severity-info {
+            background: rgba(239,68,68,0.08);
+            padding: 16px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #ef4444;
+            text-align: left;
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .severity-info strong {
+            color: #7f1d1d;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .nav-links {
+            margin-top: 28px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+        
+        .nav-links a:hover {
+            background: rgba(99,102,241,0.1);
+            border-color: #6366f1;
+        }
+        /* Dark theme overrides */
+        body.dark-theme .report-container {
+            background: linear-gradient(135deg, rgba(18,24,45,0.98) 0%, rgba(15,20,40,0.95) 100%);
+            border-color: rgba(239,68,68,0.3);
+            box-shadow: 0 12px 48px rgba(239,68,68,0.1), 0 2px 8px rgba(0,0,0,0.4);
+        }
+        body.dark-theme .report-container .subtitle { color: #cbd5e1; }
+        body.dark-theme .issue-types label {
+            background: rgba(239,68,68,0.08);
+            border-color: rgba(239,68,68,0.4);
+            color: #cbd5e1;
+        }
+        body.dark-theme .issue-types label:hover {
+            background: rgba(239,68,68,0.15);
+            border-color: #ef4444;
+        }
+        body.dark-theme .report-container input,
+        body.dark-theme .report-container textarea,
+        body.dark-theme .report-container select {
+            background: rgba(18,24,45,0.8);
+            border-color: rgba(239,68,68,0.3);
+            color: #cbd5e1;
+        }
+        body.dark-theme .report-container input::placeholder,
+        body.dark-theme .report-container textarea::placeholder {
+            color: #64748b;
+        }
+        body.dark-theme .report-container input:focus,
+        body.dark-theme .report-container textarea:focus,
+        body.dark-theme .report-container select:focus {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+        }
+        body.dark-theme .severity-info {
+            background: rgba(239,68,68,0.08);
+            color: #cbd5e1;
+            border-left-color: #ef4444;
+        }
+        body.dark-theme .severity-info strong {
+            color: #fca5a5;
+        }
+        body.dark-theme .nav-links a {
+            color: #a78bfa;
+            border-color: rgba(167,139,250,0.3);
+        }
+        body.dark-theme .nav-links a:hover {
+            background: rgba(167,139,250,0.1);
+            border-color: #a78bfa;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar"><div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;width:100%;padding:0 16px;"><a href="index.html" class="logo" style="font-weight:700;color:var(--brand-1);text-decoration:none;">Nutron Chat</a><div style="margin-left:auto;display:flex;gap:10px;align-items:center;"><button id="theme-toggle" class="icon-btn" title="Toggle dark theme" aria-pressed="false" aria-label="Toggle theme">🌙</button></div></div></nav>
+    <div style="height: 48px;"></div>
+    
+    <div class="report-container">
+        <h1>🐛 Report an Issue</h1>
+        <p class="subtitle">Help us improve Nutron Chat by reporting bugs and issues</p>
+        
+        <form onsubmit="alert('Thank you for reporting! We\'ll look into it soon.'); return false;">
+            <input type="text" placeholder="Your Name" required><br>
+            <input type="email" placeholder="Your Email" required><br>
+            
+            <label style="display: block; text-align: left; margin: 20px 0 12px 0; color: #475569; font-weight: 600;">
+                Issue Type
+            </label>
+            <div class="issue-types">
+                <label>
+                    <input type="radio" name="issue-type" value="bug" required> Bug Report
+                </label>
+                <label>
+                    <input type="radio" name="issue-type" value="crash"> App Crash
+                </label>
+                <label>
+                    <input type="radio" name="issue-type" value="performance"> Performance
+                </label>
+                <label>
+                    <input type="radio" name="issue-type" value="ui"> UI/UX Issue
+                </label>
+            </div>
+            
+            <label style="display: block; text-align: left; margin: 20px 0 12px 0; color: #475569; font-weight: 600;">
+                Severity Level
+            </label>
+            <select required>
+                <option value="" disabled selected>Select severity level</option>
+                <option value="critical">🔴 Critical - App doesn't work</option>
+                <option value="high">🟠 High - Major feature broken</option>
+                <option value="medium">🟡 Medium - Some features affected</option>
+                <option value="low">🟢 Low - Minor issue/typo</option>
+            </select>
+            
+            <label style="display: block; text-align: left; margin: 20px 0 12px 0; color: #475569; font-weight: 600;">
+                Bug Description
+            </label>
+            <textarea rows="5" placeholder="Please describe the issue in detail. Include: What were you trying to do? What happened instead? Steps to reproduce?" required></textarea>
+            
+            <div class="severity-info">
+                <strong>📋 Tips for better reports:</strong>
+                Be specific about when the issue occurs • Include your browser/device info • Describe the exact steps to reproduce • Attach screenshots if possible
+            </div>
+            
+            <button type="submit">Submit Issue Report</button>
+        </form>
+        
+        <div class="nav-links">
+            <a href="index.html">← Back to Chat</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </div>
+    <script src="../javascript/script.js"></script>
+</body>
+</html>

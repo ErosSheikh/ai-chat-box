@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nutron Chat - AI Chat Box</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <nav class="navbar"><div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;width:100%;padding:0 16px;"><a href="index.html" class="logo" style="font-weight:700;color:var(--brand-1);text-decoration:none;">Nutron Chat</a><div style="margin-left:auto;display:flex;gap:10px;align-items:center;"><button id="sidebar-toggle" class="icon-btn" aria-label="Toggle sidebar" aria-expanded="false">☰</button><button id="compact-toggle" class="icon-btn" title="Toggle compact" aria-pressed="false" aria-label="Toggle compact layout">🗜️</button><button id="theme-toggle" class="icon-btn" title="Toggle dark theme" aria-pressed="false" aria-label="Toggle theme">🌙</button></div></div></nav>
+    <div class="main-layout" style="padding-top:72px;">
+        <aside class="sidebar">
+            <div class="sidebar-header">Nutron Chat</div>
+            <nav class="sidebar-nav" role="navigation" aria-label="Main">
+                <a href="index.html" class="active"><span class="icon" aria-hidden="true">💬</span><span class="label">Chat</span></a>
+                <a href="about.html"><span class="icon" aria-hidden="true">ℹ️</span><span class="label">About</span></a>
+                <a href="contact.html" class="contact-link"><span class="icon" aria-hidden="true">✉️</span><span class="label">Contact</span></a>
+                <a href="#" id="report-issue-link"><span class="icon" aria-hidden="true">⚠️</span><span class="label">Report Issue</span></a>
+            </nav>
+            <div class="conversations">
+                <div class="conv-header">
+                    <strong>Conversations</strong>
+                    <div class="conv-controls">
+                        <button id="new-chat-btn" title="Start new chat">New</button>
+                        <button id="save-chat-btn" title="Save current conversation">Save</button>
+                    </div>
+                </div>
+                <ul id="conversations-list" class="conversations-list" aria-live="polite"></ul>
+            </div>
+            <div class="sidebar-footer">
+                <a href="contact.html" class="contact-btn-sidebar">Contact</a>
+                <button id="clear-chats-btn" class="danger-btn" title="Clear all conversations">Clear All</button>
+            </div>
+        </aside>
+        <section class="chat-section">
+
+            <div class="welcome-banner" style="margin-top:6px;">
+                <button class="welcome-close" aria-label="Dismiss welcome">✕</button>
+                <h2>Welcome to Nutron Chat!</h2>
+                <p>Nutron is your multi-backend AI chat assistant.Ask questions, and enjoy a modern chat experience.</p>
+                <div class="quick-links">
+                    <a href="about.html">Learn more about Nutron</a>
+                </div>
+                <p style="margin-top:10px; color:#888; font-size:0.98rem;">Tip: Try asking about AI, machine learning, or say hello!</p>
+            </div>
+
+            <section class="mock-chat card assistant-floating" aria-label="Chat">
+                <div class="chat-header assistant-header">
+                    <div class="assistant-left">
+                        <div class="assistant-avatar" aria-hidden="true">🤖</div>
+                        <div class="assistant-meta">
+                            <div class="assistant-title">Nutron Assistant</div>
+                            <div class="assistant-sub"><span class="backend-badge" id="header-backend-badge">gpt-40-mini</span></div>
+                        </div>
+                    </div>
+                    <div class="header-controls">
+                        <label class="read-toggle"><input type="checkbox" id="read-aloud-toggle"> Read aloud</label>
+                    </div>
+                </div>
+
+                <div class="chat-body" id="chat-messages"></div>
+
+                <div id="typing-indicator" class="typing-indicator" style="display:none;" aria-live="polite" role="status"><span class="typing-spinner" aria-hidden="true"></span><span class="typing-text">AI is typing...</span></div>
+
+                <form class="chat-input-area" onsubmit="return false;">
+                    <button id="mic-btn" class="mic-button" type="button" title="Start voice input">🎙️</button>
+                    <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" />
+                    <button id="send-btn" type="button" aria-pressed="false" title="Send message">
+                        <svg class="send-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span class="btn-text">Send</span>
+                    </button>
+                    <span id="mic-status" class="mic-status" aria-live="polite" style="display:none;">Listening...</span>
+                </form>
+            </section>
+
+        </section>
+    </div>
+    <div id="sidebar-overlay" class="sidebar-overlay" hidden aria-hidden="true"></div>
+    <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+    <script src="../javascript/script.js"></script>
+    <style>
+        .welcome-banner {
+            max-width: 600px;
+            margin: 32px auto 0 auto;
+            background: rgba(255,255,255,0.93);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(161,196,253,0.10);
+            padding: 24px 32px 18px 32px;
+            text-align: center;
+            transition: transform 0.28s ease, opacity 0.28s ease, max-height 0.28s ease, padding 0.28s ease;
+            overflow: hidden;
+            max-height: 1000px;
+        }
+        .welcome-banner h2 {
+            color: #0078d4;
+            margin-bottom: 10px;
+        }
+        .welcome-banner.collapsed {
+            transform: translateY(-18px);
+            opacity: 0;
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-top: 6px;
+            pointer-events: none;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 18px 0 0 0;
+        }
+        .feature-list li {
+            margin: 0 0 6px 0;
+            font-size: 1.08rem;
+            color: #333;
+        }
+        .quick-links {
+            margin: 12px 0;
+            font-size: 0.95rem;
+        }
+        .quick-links a {
+            color: #0078d4;
+            text-decoration: none;
+        }
+        @media (max-width: 700px) {
+            .welcome-banner { padding: 16px 6vw 10px 6vw; }
+        }
+    </style>
+</body>
+</html>

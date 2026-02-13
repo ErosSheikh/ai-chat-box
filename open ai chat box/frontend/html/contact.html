@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact | Nutron Chat</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .contact-container { 
+            max-width: 620px; 
+            margin: 60px auto; 
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(240,245,255,0.95) 100%); 
+            border-radius: 24px; 
+            box-shadow: 0 12px 48px rgba(99,102,241,0.15), 0 2px 8px rgba(0,0,0,0.04); 
+            padding: 48px 40px; 
+            text-align: center;
+            border: 1px solid rgba(99,102,241,0.1);
+            backdrop-filter: blur(8px);
+        }
+        .contact-container h1 { 
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+        .contact-container p { 
+            color: #475569; 
+            font-size: 1.05rem; 
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        .contact-container a { 
+            color: #6366f1; 
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .contact-container a:hover { color: #8b5cf6; }
+        
+        .contact-container input, .contact-container textarea, .contact-container select {
+            width: 100%; 
+            margin: 12px 0; 
+            padding: 12px 16px; 
+            border-radius: 10px; 
+            border: 1.5px solid #e2e8f0;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: rgba(255,255,255,0.95);
+        }
+        .contact-container input:focus, .contact-container textarea:focus, .contact-container select:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+        }
+        
+        .contact-container button { 
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); 
+            color: #fff; 
+            border: none; 
+            border-radius: 10px; 
+            padding: 12px 32px; 
+            font-size: 1.02rem; 
+            cursor: pointer; 
+            margin-top: 16px;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(99,102,241,0.25);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .contact-container button:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(99,102,241,0.35);
+        }
+        
+        .contact-info { 
+            margin: 32px 0 20px 0; 
+            color: #475569; 
+            font-size: 1.02rem;
+            background: rgba(99,102,241,0.08);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+        .contact-info div { margin: 8px 0; }
+        
+        .social-links { 
+            margin: 24px 0 0 0;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+        .social-links a { 
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
+            color: #6366f1; 
+            font-size: 1.4rem; 
+            text-decoration: none; 
+            border-radius: 12px;
+            transition: all 0.3s;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+        .social-links a:hover { 
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(99,102,241,0.3);
+        }
+        /* Dark theme overrides */
+        body.dark-theme .contact-container {
+            background: linear-gradient(135deg, rgba(18,24,45,0.98) 0%, rgba(15,20,40,0.95) 100%);
+            border-color: rgba(167,139,250,0.2);
+            box-shadow: 0 12px 48px rgba(167,139,250,0.1), 0 2px 8px rgba(0,0,0,0.4);
+        }
+        body.dark-theme .contact-container p { color: #cbd5e1; }
+        body.dark-theme .contact-container a { color: #a78bfa; }
+        body.dark-theme .contact-container a:hover { color: #d8b4fe; }
+        body.dark-theme .contact-container input,
+        body.dark-theme .contact-container textarea,
+        body.dark-theme .contact-container select {
+            background: rgba(18,24,45,0.8);
+            border-color: rgba(167,139,250,0.3);
+            color: #cbd5e1;
+        }
+        body.dark-theme .contact-container input::placeholder,
+        body.dark-theme .contact-container textarea::placeholder {
+            color: #64748b;
+        }
+        body.dark-theme .contact-container input:focus,
+        body.dark-theme .contact-container textarea:focus,
+        body.dark-theme .contact-container select:focus {
+            border-color: #a78bfa;
+            box-shadow: 0 0 0 3px rgba(167,139,250,0.1);
+        }
+        body.dark-theme .contact-info {
+            background: rgba(167,139,250,0.08);
+            color: #cbd5e1;
+            border-color: rgba(167,139,250,0.2);
+        }
+        body.dark-theme .social-links a {
+            background: linear-gradient(135deg, rgba(167,139,250,0.2) 0%, rgba(139,92,246,0.15) 100%);
+            color: #a78bfa;
+            border-color: rgba(167,139,250,0.3);
+        }
+        body.dark-theme .social-links a:hover {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar"><div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;width:100%;padding:0 16px;"><a href="index.html" class="logo" style="font-weight:700;color:var(--brand-1);text-decoration:none;">Nutron Chat</a><div style="margin-left:auto;display:flex;gap:10px;align-items:center;"><button id="theme-toggle" class="icon-btn" title="Toggle dark theme" aria-pressed="false" aria-label="Toggle theme">🌙</button></div></div></nav>
+    <div style="height: 48px;"></div>
+    <div class="contact-container">
+        <h1>Contact Nutron Team</h1>
+        <p>Have feedback, questions, or want to collaborate? Fill out the form below or reach us directly!</p>
+        <form onsubmit="alert('Thank you for your message!'); return false;">
+            <input type="text" placeholder="Your Name" required><br>
+            <input type="email" placeholder="Your Email" required><br>
+            <select required>
+                <option value="" disabled selected>Reason for Contact</option>
+                <option value="feedback">Feedback</option>
+                <option value="bug">Report a Bug</option>
+                <option value="collab">Collaboration</option>
+                <option value="support">Support</option>
+                <option value="other">Other</option>
+            </select><br>
+            <textarea rows="4" placeholder="Your Message" required></textarea><br>
+            <button type="submit">Send</button>
+        </form>
+        <div class="contact-info">
+            <div>Email: <a href="mailto:nutron@yourdomain.com">nutron@yourdomain.com</a></div>
+            <div>Phone: <a href="tel:+1234567890">+1 234 567 890</a></div>
+        </div>
+        <div class="social-links">
+            <a href="#" title="Twitter">&#x1F426;</a>
+            <a href="#" title="GitHub">&#x1F5C3;</a>
+            <a href="#" title="LinkedIn">&#x1F465;</a>
+        </div>
+        <p style="margin-top:18px;"><a href="index.html">Back to Chat</a></p>
+    </div>
+    <script src="../javascript/script.js"></script>
+</body>
+</html>
